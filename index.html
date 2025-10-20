@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 2nd Anniversary</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Lora', serif;
+            color: #333;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #ffe6f7, #e6f7ff); /* Soft pastel gradient */
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #d63384;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #6f42c1;
+            margin-bottom: 20px;
+        }
+        section {
+            padding: 60px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Background Music */
+        audio {
+            display: none; /* Hidden, but plays */
+        }
+        /* Music Control Button */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #d63384;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+        .music-control:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+        /* Message Section */
+        .message {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .message p {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        /* Photo Gallery with Flip Effect */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .gallery-item {
+            perspective: 1000px; /* For 3D flip */
+            width: 100%;
+            max-width: 300px;
+            height: 300px; /* Fixed height for consistency */
+        }
+        .gallery-item-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .gallery-item:hover .gallery-item-inner {
+            transform: rotateY(180deg); /* Flip on hover */
+        }
+        .gallery-item-front, .gallery-item-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .gallery-item-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .gallery-item-back {
+            transform: rotateY(180deg);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .gallery-item-back[contenteditable] {
+            outline: none;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+            .music-control {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="romantic-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control Button -->
+    <button class="music-control" id="music-toggle" title="Toggle Music">
+        <i class="fas fa-music"></i>
+    </button>
+
+    <!-- Header -->
+    <header class="container">
+        <h1>Happy 2nd Anniversary, My Love ❤️</h1>
+    </header>
+
+    <!-- Message Section -->
+    <section id="message" class="container message">
+        <h2>A Heartfelt Message</h2>
+        <p>Dear [Girlfriend's Name],<br><br>
+        [Placeholder text: Replace this with your heartfelt love letter. For example: From the moment we met, my life has been filled with joy and love. These two years have been the best of my life, and I can't wait to create more memories together. You are my everything, and I love you more than words can say.]<br><br>
+        Forever yours,<br>
+        [Your Name]</p>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="container">
+        <h2>Our Memories</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <div class="gallery-item-inner">
+                    <div class="gallery-item-front">
+                        <img src="photo1.jpg" alt="Memory 1">
+                    </div>
+                    <div class="gallery-item-back" contenteditable="true">[Placeholder: Edit this text to describe Memory 1. For example: Our first date at the park, where we laughed and shared dreams.]</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-inner">
+                    <div class="gallery-item-front">
+                        <img src="photo2.jpg" alt="Memory 2">
+                    </div>
+                    <div class="gallery-item-back" contenteditable="true">[Placeholder: Edit this text to describe Memory 2. For example: The trip to the beach, watching the sunset together.]</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-inner">
+                    <div class="gallery-item-front">
+                        <img src="photo3.jpg" alt="Memory 3">
+                    </div>
+                    <div class="gallery-item-back" contenteditable="true">[Placeholder: Edit this text to describe Memory 3. For example: Celebrating your birthday with a surprise cake.]</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-inner">
+                    <div class="gallery-item-front">
+                        <img src="photo4.jpg" alt="Memory 4">
+                    </div>
+                    <div class="gallery-item-back" contenteditable="true">[Placeholder: Edit this text to describe Memory 4. For example: Our cozy movie night at home.]</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-item-inner">
+                    <div class="gallery-item-front">
+                        <img src="photo5.jpg" alt="Memory 5">
+                    </div>
+                    <div class="gallery-item-back" contenteditable="true">[Placeholder: Edit this text to describe Memory 5. For example: Hiking that mountain trail, hand in hand.]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for Scroll Animations and Music Toggle -->
+    <script>
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Music Toggle
+        const music = document.getElementById('bg-music');
+        const toggleBtn = document.getElementById('music-toggle');
+        let isPlaying = true; // Assuming it starts playing due to autoplay
+
+        toggleBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                music.pause();
+                toggleBtn.innerHTML = '<i class="fas fa-music-slash"></i>';
+            } else {
+                music.play();
+                toggleBtn.innerHTML = '<i class="fas fa-music"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
+</body>
+</html>
