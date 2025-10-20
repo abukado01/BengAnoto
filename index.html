@@ -22,14 +22,39 @@
             font-family: 'Lora', serif;
             color: #333;
             line-height: 1.6;
-            background: linear-gradient(135deg, #ffe6f7, #e6f7ff); /* Soft pastel gradient */
+            background: linear-gradient(135deg, #ffe6f7, #e6f7ff); /* Soft pastel pink and purple gradient */
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+        }
+        /* Floating Hearts Background - Increased density and visibility */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(255, 182, 193, 0.5) 2px, transparent 2px),
+                radial-gradient(circle, rgba(221, 160, 221, 0.5) 2px, transparent 2px),
+                radial-gradient(circle, rgba(255, 105, 180, 0.4) 1px, transparent 1px);
+            background-size: 40px 40px, 60px 60px, 30px 30px;
+            background-position: 0 0, 20px 20px, 10px 10px;
+            animation: floatHearts 15s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        @keyframes floatHearts {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
         h1, h2 {
             font-family: 'Poppins', sans-serif;
@@ -280,6 +305,3 @@
     </script>
 </body>
 </html>
-
-
-
